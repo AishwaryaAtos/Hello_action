@@ -23,24 +23,24 @@
 #       shell: bash
 name: 'Jenkins trigger build'
 description: 'Auto trigger build of jenkins'
-inputs:
-  jenkins-url:  # url
-    description: 'URL of Jenkins server'
-    required: true
-  jenkins-job: #job name
-    description: 'Job name'
-    required: true
-  jenkins-user: #user name of jenkins
-    description: 'Jenkins user name'
-    required: true
-  jenkins-token:
-    description: 'Jenkins token'
-    required: true
+# inputs:
+#   jenkins-url:  # url
+#     description: 'URL of Jenkins server'
+#     required: true
+#   jenkins-job: #job name
+#     description: 'Job name'
+#     required: true
+#   jenkins-user: #user name of jenkins
+#     description: 'Jenkins user name'
+#     required: true
+#   jenkins-token:
+#     description: 'Jenkins token'
+#     required: true
 
 runs:
   using: "composite"
   steps:
       - run: jq --version
 #     - run: curl -X POST http://${{ inputs.jenkins-url }}/job/${{ inputs.jenkins-job }}/build --user ${{ inputs.jenkins-user }}:${{ inputs.jenkins-token }}
-      shell: bash
+ 
     
