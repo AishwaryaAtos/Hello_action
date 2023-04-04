@@ -1,23 +1,45 @@
-name: 'Hello World'
-description: 'Greet someone'
+# name: 'Hello World'
+# description: 'Greet someone'
+# inputs:
+#   who-to-greet:  # id of input
+#     description: 'Who to greet'
+#     required: true
+#     default: 'World'
+# outputs:
+#   random-number:
+#     description: "Random number"
+#     value: ${{ steps.random-number-generator.outputs.random-number }}
+# runs:
+#   using: "composite"
+#   steps:
+#     - run: echo Hello ${{ inputs.who-to-greet }}.
+#       shell: bash
+#     - id: random-number-generator
+#       run: echo "random-number=$(echo $RANDOM)" >> $GITHUB_OUTPUT
+#       shell: bash
+#     - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+#       shell: bash
+#     - run: goodbye.sh
+#       shell: bash
+name: 'Jenkins trigger build'
+description: 'Auto trigger build of jenkins'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  jenkins-url:  # url
+    description: 'URL of Jenkins server'
     required: true
-    default: 'World'
-outputs:
-  random-number:
-    description: "Random number"
-    value: ${{ steps.random-number-generator.outputs.random-number }}
+  jenkins-job: #job name
+    description: 'Job name'
+    required: true
+  jenkins-user: #user name of jenkins
+    description: 'Jenkins user name'
+    required: true
+  jenkins-token:
+    description: 'Jenkins token'
+    required: true
+
 runs:
   using: "composite"
   steps:
-    - run: echo Hello ${{ inputs.who-to-greet }}.
+    - run: curl -X POST http://${{ inputs.jenkins-url }}/job/${{ inputs.jenkins-job }}/build --user ${{ inputs.jenkins-user }}:${{ inputs.jenkins-token }}
       shell: bash
-    - id: random-number-generator
-      run: echo "random-number=$(echo $RANDOM)" >> $GITHUB_OUTPUT
-      shell: bash
-    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
-      shell: bash
-    - run: goodbye.sh
-      shell: bash
+    
