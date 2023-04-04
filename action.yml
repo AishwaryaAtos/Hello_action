@@ -41,6 +41,7 @@ runs:
   using: "composite"
   steps:
       - run: jq --version
+        shell: bash
 #     - run: curl -X POST http://${{ inputs.jenkins-url }}/job/${{ inputs.jenkins-job }}/build --user ${{ inputs.jenkins-user }}:${{ inputs.jenkins-token }}
  
     
