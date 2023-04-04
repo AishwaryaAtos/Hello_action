@@ -23,6 +23,9 @@
 #       shell: bash
 name: 'Jenkins trigger build'
 description: 'Auto trigger build of jenkins'
+branding:
+  icon: "check"
+  color: "green"
 # inputs:
 #   jenkins-url:  # url
 #     description: 'URL of Jenkins server'
@@ -38,10 +41,13 @@ description: 'Auto trigger build of jenkins'
 #     required: true
 
 runs:
-  using: "composite"
   steps:
-      - run: curl --silent -u admin:11ee65cf2ec4c69e0e255da6fda1c6c563 http://18.213.154.73:8080/job/Sonar/lastBuild/api/json | jq ".result"
-        shell: bash
+#       - run: curl --silent -u admin:11ee65cf2ec4c69e0e255da6fda1c6c563 http://18.213.154.73:8080/job/Sonar/lastBuild/api/json | jq ".result"
+        - run: echo "build failed"
+          if: curl --silent -u admin:11ee65cf2ec4c69e0e255da6fda1c6c563 http://18.213.154.73:8080/job/Sonar/lastBuild/api/json | jq ".result" != "SUCCESS"
+          shell: bash
+        
+        
 #     - run: curl -X POST http://${{ inputs.jenkins-url }}/job/${{ inputs.jenkins-job }}/build --user ${{ inputs.jenkins-user }}:${{ inputs.jenkins-token }}
  
     
