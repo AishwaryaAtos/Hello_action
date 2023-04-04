@@ -40,6 +40,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: curl -X POST http://${{ inputs.jenkins-url }}/job/${{ inputs.jenkins-job }}/build --user ${{ inputs.jenkins-user }}:${{ inputs.jenkins-token }}
+      - run: jq --version
+#     - run: curl -X POST http://${{ inputs.jenkins-url }}/job/${{ inputs.jenkins-job }}/build --user ${{ inputs.jenkins-user }}:${{ inputs.jenkins-token }}
       shell: bash
     
