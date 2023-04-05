@@ -47,7 +47,7 @@ runs:
   using: "composite"
   steps:  
       - id: run_tests
-        run: echo "result=$(echo 'curl --silent -u ${{ inputs.jenkins-user }}:${{ inputs.jenkins-token }} http://${{ inputs.jenkins-url }}/job/${{ inputs.jenkins-job }}/lastBuild/api/json | jq ".result"')" >> $GITHUB_OUTPUT
+        run:  echo 'curl --silent -u ${{ inputs.jenkins-user }}:${{ inputs.jenkins-token }} http://${{ inputs.jenkins-url }}/job/${{ inputs.jenkins-job }}/lastBuild/api/json | jq ".result"'" >> $GITHUB_OUTPUT
 #         run: curl --silent -u ${{ inputs.jenkins-user }}:${{ inputs.jenkins-token }} http://${{ inputs.jenkins-url }}/job/${{ inputs.jenkins-job }}/lastBuild/api/json | jq ".result"'"
         #run: echo "result='curl --silent -u admin:11ee65cf2ec4c69e0e255da6fda1c6c563 http://18.213.154.73:8080/job/Sonar/lastBuild/api/json | jq ".result"'" >> $GITHUB_OUTPUT
         shell: bash
