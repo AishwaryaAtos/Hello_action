@@ -41,12 +41,13 @@ description: 'Auto trigger build of jenkins'
 #     required: true
 runs:
   using: "composite"
-  steps:
-     - run: echo 'curl --silent -u admin:11ee65cf2ec4c69e0e255da6fda1c6c563 http://18.213.154.73:8080/job/Sonar/lastBuild/api/json | jq ".result"' >> $GITHUB_OUTPUT
-       shell: bash
-       id: run_tests
-     - run: echo "found result : ${{ steps.run_tests.outputs }}"
-       shell: bash
+  steps:  
+      - id: run_tests
+        run: echo "result='curl --silent -u admin:11ee65cf2ec4c69e0e255da6fda1c6c563 http://18.213.154.73:8080/job/Sonar/lastBuild/api/json | jq ".result"'" >> $GITHUB_OUTPUT
+        shell: bash
+       
+      - run: echo "found result : ${{ steps.run_tests.outputs.result }}"
+        shell: bash
         
 #     - run: curl -X POST http://${{ inputs.jenkins-url }}/job/${{ inputs.jenkins-job }}/build --user ${{ inputs.jenkins-user }}:${{ inputs.jenkins-token }}
  
