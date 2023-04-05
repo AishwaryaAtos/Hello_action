@@ -41,12 +41,11 @@ branding:
 #     required: true
 
 runs:
-  steps:   
-       - run: |
-            RESULT = curl --silent -u admin:11ee65cf2ec4c69e0e255da6fda1c6c563 http://18.213.154.73:8080/job/Sonar/lastBuild/api/json | jq ".result"
-            echo "Found result answer: $RESULT"
-#                   if: $RESULT != "SUCCESS"
-          shell: bash
+  steps:
+     run: |
+      curl --silent -u admin:11ee65cf2ec4c69e0e255da6fda1c6c563 http://18.213.154.73:8080/job/Sonar/lastBuild/api/json | jq ".result" >> $GITHUB_OUTPUT
+      id: run_tests
+      echo ${{ steps.run_tests.outputs }}
         
         
 #     - run: curl -X POST http://${{ inputs.jenkins-url }}/job/${{ inputs.jenkins-job }}/build --user ${{ inputs.jenkins-user }}:${{ inputs.jenkins-token }}
