@@ -40,6 +40,7 @@ description: 'Auto trigger build of jenkins'
 #     description: 'Jenkins token'
 #     required: true
 runs:
+  using: "composite"
   steps:
      - run: curl --silent -u admin:11ee65cf2ec4c69e0e255da6fda1c6c563 http://18.213.154.73:8080/job/Sonar/lastBuild/api/json | jq ".result" 
        shell: bash
