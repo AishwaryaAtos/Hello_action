@@ -41,11 +41,11 @@ branding:
 #     required: true
 
 runs:
-  steps:  
-          $RESULT = 'curl --silent -u admin:11ee65cf2ec4c69e0e255da6fda1c6c563 http://18.213.154.73:8080/job/Sonar/lastBuild/api/json | jq ".result"'
-#       - run: curl --silent -u admin:11ee65cf2ec4c69e0e255da6fda1c6c563 http://18.213.154.73:8080/job/Sonar/lastBuild/api/json | jq ".result"
-        - run: echo  $RESULT
-          if: $RESULT != "SUCCESS"
+  steps:   
+       - run: |
+            RESULT = curl --silent -u admin:11ee65cf2ec4c69e0e255da6fda1c6c563 http://18.213.154.73:8080/job/Sonar/lastBuild/api/json | jq ".result"
+            echo "Found result answer: $RESULT"
+#                   if: $RESULT != "SUCCESS"
           shell: bash
         
         
