@@ -39,10 +39,10 @@ inputs:
   jenkins-token:
     description: 'Jenkins token'
     required: true
-# outputs:
-#   result:
-#     description: "result of Jenkins Status"
-#     value: ${{ steps.run_tests.outputs.result }}
+outputs:
+  result:
+    description: "result of Jenkins Status"
+    value: ${{ steps.run_tests.outputs.result }}
 runs:
   using: "composite"
   steps:  
